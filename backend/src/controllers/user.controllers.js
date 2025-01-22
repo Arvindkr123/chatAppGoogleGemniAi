@@ -18,6 +18,8 @@ export const userRegisterController = async (req, res) => {
 
         const token = user.generateJWT()
 
+        delete user._doc.password;
+
         res.status(201).json({
             user,
             token
@@ -64,6 +66,8 @@ export const userLoginController = async (req, res) => {
 
 
         const token = await user.generateJWT();
+
+        delete user._doc.password;
 
 
         res.status(200).json({
