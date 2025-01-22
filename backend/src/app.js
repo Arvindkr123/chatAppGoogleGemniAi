@@ -1,5 +1,6 @@
 import express from 'express'
 import usersRoutes from './routes/user.routes.js';
+import projectRoutes from './routes/project.routes.js';
 import cookieParser from "cookie-parser"
 import { redisClient } from './services/redis.services.js';
 import cors from "cors"
@@ -15,6 +16,7 @@ redisClient.on("connect", () => {
     console.log("Connected to Redis!");
 });
 
-app.use("/users", usersRoutes)
+app.use("/users", usersRoutes);
+app.use("/projects", projectRoutes)
 
 export default app;

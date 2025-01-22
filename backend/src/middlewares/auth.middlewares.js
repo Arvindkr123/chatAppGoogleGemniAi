@@ -17,7 +17,7 @@ export const authUser = async (req, res, next) => {
 
         const isBlackListed = await redisClient.get('token');
 
-        console.log("from redis client is black listed", isBlackListed)
+        // console.log("from redis client is black listed", isBlackListed)
 
         if (isBlackListed) {
             res.cookie('token', '')
@@ -27,8 +27,10 @@ export const authUser = async (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, config.JWT_SECRET);
-        req.user = decoded;
 
+        // console.log(decoded)
+        req.user = decoded
+        // console.log(req.user);
         next();
 
 
